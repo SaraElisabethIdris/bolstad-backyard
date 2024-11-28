@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 import { QUERY_KEYS } from "../constants";
 import { Participant } from "../../types";
-import { participantDTOValidator, FetchError } from "../participants-validator";
+import {  FetchError } from "../participants-validator";
 
 export const useAddParticipant = () => {
     return useMutation<Participant, FetchError<Participant>, Participant>(
