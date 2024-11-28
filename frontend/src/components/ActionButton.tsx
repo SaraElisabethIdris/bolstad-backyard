@@ -1,9 +1,18 @@
-import {Button} from "@mui/material";
+import {ReactNode} from "react";
+import styles from "./action-button.module.less";
+import {Spinner} from "./Spinner.tsx";
 
-export const PrimaryButton = ({ children, onClick }) => {
+type Props = {
+    type?: "button" | "submit" | "reset";
+    children: ReactNode;
+    onClick: () => void;
+    isLoading?: boolean;
+}
+
+export const ActionButton = ({ children, onClick, type, isLoading }:Props) => {
     return (
-        <Button onClick={onClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            {children}
-        </Button>
+        <button onClick={onClick} className={styles.actionButton} type={type} disabled={isLoading}>
+            {isLoading ? <Spinner /> : children}
+        </button>
     );
 }

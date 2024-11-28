@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 @Table(name = "participants")
 data class Participant(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    val id: Long = 1,
 
     @Column(nullable = false)
     val firstName: String,
@@ -18,8 +18,8 @@ data class Participant(
     @Column(nullable = false, unique = true)
     val email: String,
 
-    @Column(nullable = true)
-    val age: Int?,
+    @Column(nullable = true, unique = true)
+    val phone: Int?,
 
     @Column(nullable = false)
     val registrationDate: LocalDateTime = LocalDateTime.now()

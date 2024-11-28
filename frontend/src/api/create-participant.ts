@@ -9,7 +9,6 @@ export const useAddParticipant = () => {
         async (participant: Participant) => {
             //const validationResult = participantDTOValidator.safeParse(participant);
 
-
             const response = await fetch("http://localhost:8080/api/participants", {
                 method: "POST",
                 headers: {
