@@ -4,6 +4,7 @@ import { BackButton } from "../components/BackButton";
 import { Participant } from "../../types";
 import {ParticipantsTable} from "../components/ParticipantsTable.tsx";
 import {useEffect} from "react";
+import {PageLayout} from "./PageLayout.tsx";
 
 const fetchParticipants = async (): Promise<Participant[]> => {
     const response = await fetch('/api/participants');
@@ -28,13 +29,13 @@ export default function ParticipantsList() {
     if (isError) return <div>Error fetching participants</div>;
 
     return (
-        <div>
+        <PageLayout>
             <BackButton />
             <h1>Registered Participants</h1>
             {participants && participants.length > 0 ? (
                 <ParticipantsTable participants={participants} />
             ) : (
                 <div>No participants registered</div>)}
-        </div>
+        </PageLayout>
     );
 }

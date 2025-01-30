@@ -1,10 +1,12 @@
 // Register.tsx
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '../constants';
 import { useAddParticipant } from '../api/create-participant.ts';
 import { Participant } from '../../types';
 import styles from '../register.module.less';
+import {BackButton} from "../components/BackButton.tsx";
+import {useNavigate} from "react-router-dom";
+import {PageLayout} from "./PageLayout.tsx";
 
 export default function Register() {
     const [formData, setFormData] = useState<Participant>({
@@ -36,8 +38,8 @@ export default function Register() {
     };
 
     return (
-            <div className={styles.container}>
-                <h1>Register for Bolstad Backyard Ultra</h1>
+            <PageLayout>
+                <BackButton />
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <div className={styles.labelAndInput}>
                         <label htmlFor="firstName">First Name</label>
@@ -71,6 +73,6 @@ export default function Register() {
                 {addParticipantMutation.isError && !error && (
                     <p>Registration failed. Please try again.</p>
                 )}
-            </div>
+            </PageLayout>
     );
 }
