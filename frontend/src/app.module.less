@@ -1,9 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --primary-color: #6B8E23;
-  --secondary-color: #8B4513;
-  --accent-color: #FFD700;
-  --background-color: #F5F5DC;
-  --text-color: #000000;
+  --color-olivine-50: #f4f7ee;
+  --color-olivine-100: #e8edda;
+  --color-olivine-200: #d2ddb9;
+  --color-olivine-300: #b5c78f;
+  --color-olivine-400: #9db370;
+  --color-olivine-500: #7c954d;
+  --color-olivine-600: #60753b;
+  --color-olivine-700: #4a5b30;
+  --color-olivine-800: #3e4a2a;
+  --color-olivine-900: #354027;
+  --color-olivine-950: #1b2211;
 }
 
 body {
@@ -22,14 +32,9 @@ footer {
 }
 
 button {
-  background-color: var(--accent-color);
   color: var(--text-color);
   border: none;
     border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
-}
-
-button:hover {
-  background-color: var(--primary-color);
 }

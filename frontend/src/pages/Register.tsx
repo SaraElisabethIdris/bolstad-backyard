@@ -5,6 +5,7 @@ import { ROUTE_PATHS } from '../constants';
 import { useAddParticipant } from '../api/create-participant.ts';
 import { Participant } from '../../types';
 import styles from '../register.module.less';
+import { Box} from "../components/Box.tsx";
 
 export default function Register() {
     const [formData, setFormData] = useState<Participant>({
@@ -36,9 +37,10 @@ export default function Register() {
     };
 
     return (
-            <div className={styles.container}>
+            <div className="flex flex-col items-center">
                 <h1>Register for Bolstad Backyard Ultra</h1>
-                <form onSubmit={handleSubmit} className={styles.form}>
+                <Box className="p-7 m-7 rounded-2xl w-[25rem]">
+                <form onSubmit={handleSubmit} className="w-full">
                     <div className={styles.labelAndInput}>
                         <label htmlFor="firstName">First Name</label>
                         <input className={styles.input} type="text" id="firstName" name="firstName" required
@@ -59,7 +61,7 @@ export default function Register() {
                         <input className={styles.input} type="text" id="phone" name="phone" required
                                value={formData.phone} onChange={handleChange}/>
                     </div>
-                    <button type="submit" disabled={addParticipantMutation.isLoading}>
+                    <button type="submit" disabled={addParticipantMutation.isLoading} className="mt-7 w-full bg-test text-secondary-100 rounded-md p-2">
                         {addParticipantMutation.isLoading ? 'Registering...' : 'Register'}
                     </button>
                 </form>
@@ -71,6 +73,7 @@ export default function Register() {
                 {addParticipantMutation.isError && !error && (
                     <p>Registration failed. Please try again.</p>
                 )}
+                </Box>
             </div>
     );
 }

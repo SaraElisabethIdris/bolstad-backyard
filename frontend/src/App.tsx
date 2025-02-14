@@ -1,7 +1,6 @@
 import {QueryClient, QueryClientProvider} from "react-query";
 import {ReactQueryDevtools} from "react-query/devtools";
 import {Router} from "./pages/router";
-import styles from "./app.module.less";
 
 
 const queryClient = new QueryClient({
@@ -15,7 +14,7 @@ const queryClient = new QueryClient({
 
 export function App() {
     return (
-        <div id="app" className={styles}>
+        <div id="app" >
                     <QueryClientProvider client={queryClient}>
                         <Router />
                         <ReactQueryDevtools initialIsOpen={false} />
