@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
 @import "tailwindcss";
+
 
 @tailwind base;
 @tailwind components;
@@ -7,17 +8,33 @@
 
 
 @theme {
-    --color-olivine-50: #f4f7ee;
-    --color-olivine-100: #e8edda;
-    --color-olivine-200: #d2ddb9;
-    --color-olivine-300: #b5c78f;
-    --color-olivine-400: #9db370;
-    --color-olivine-500: #7c954d;
-    --color-olivine-600: #60753b;
-    --color-olivine-700: #4a5b30;
-    --color-olivine-800: #3e4a2a;
-    --color-olivine-900: #354027;
-    --color-olivine-950: #1b2211;
+    --color-azure-radiance-10: #f4f7fd;
+    --color-azure-radiance-50: #eef3ff;
+    --color-azure-radiance-100: #dae3ff;
+    --color-azure-radiance-200: #bdceff;
+    --color-azure-radiance-300: #90b0ff;
+    --color-azure-radiance-400: #4c7aff;
+    --color-azure-radiance-500: #355bfc;
+    --color-azure-radiance-600: #1f39f1;
+    --color-azure-radiance-700: #1725de;
+    --color-azure-radiance-800: #1920b4;
+    --color-azure-radiance-900: #1a228e;
+    --color-azure-radiance-950: #151856;
+    --color-tea-green-50: #f3fbf2;
+    --color-tea-green-100: #e2f7e1;
+    --color-tea-green-200: #c3ecc1;
+    --color-tea-green-300: #99de97;
+    --color-tea-green-400: #65c662;
+    --color-tea-green-500: #40aa3d;
+    --color-tea-green-600: #308c2d;
+    --color-tea-green-700: #296e27;
+    --color-tea-green-800: #245823;
+    --color-tea-green-900: #1e491e;
+    --color-tea-green-950: #0c270c;
+
+
+
+
 }
 
 @font-face {
@@ -26,6 +43,5 @@
 
 @theme {
     --font-family-sans: 'Karla', sans-serif;
-    --font-family-serif: 'Karla', sans-serif;
-    --font-family-mono: 'Karla', sans-serif;
+    --font-family-serif: 'Averia Serif Libre', serif;
 }

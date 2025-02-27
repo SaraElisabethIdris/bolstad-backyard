@@ -40,6 +40,7 @@
     "less-loader": "^12.2.0",
     "tailwindcss": "^4.0.7",
     "typescript": "^5.2.2",
-    "vite": "^6.1.1"
+    "vite": "^6.1.1",
+    "vite-plugin-svgr": "^4.3.0"
   }
 }
