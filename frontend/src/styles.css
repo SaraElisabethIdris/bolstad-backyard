@@ -1,5 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
 @import "tailwindcss";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@theme {
+    --color-olivine-50: #f4f7ee;
+    --color-olivine-100: #e8edda;
+    --color-olivine-200: #d2ddb9;
+    --color-olivine-300: #b5c78f;
+    --color-olivine-400: #9db370;
+    --color-olivine-500: #7c954d;
+    --color-olivine-600: #60753b;
+    --color-olivine-700: #4a5b30;
+    --color-olivine-800: #3e4a2a;
+    --color-olivine-900: #354027;
+    --color-olivine-950: #1b2211;
+}
+
+@font-face {
+    font-family: Karla;
+}
+
+@theme {
+    --font-family-sans: 'Karla', sans-serif;
+    --font-family-serif: 'Karla', sans-serif;
+    --font-family-mono: 'Karla', sans-serif;
+}
