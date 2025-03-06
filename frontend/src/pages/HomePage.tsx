@@ -10,6 +10,7 @@ import NotatblokkPennIkon from '../img/notatblokk-penn-ikon.svg?react';
 import PokalIkon from '../img/pokal-ikon.svg?react';
 import KartIkon from '../img/kart-ikon.svg?react';
 import TogIkon from '../img/tog-ikon.svg?react';
+import SparklesIkon from '../img/sparkles-ikon.svg?react';
 import {SectionComponent} from "../components/SectionComponent.tsx";
 import {ShortInfoSection} from "../components/ShortInfoSection.tsx";
 
@@ -97,8 +98,14 @@ export const HomePage = () => {
                         </iframe>
                     </div>
                 </div>
+                <div className="flex flex-col pt-8">
+                    <SparklesIkon className={"size-20 stroke-1 bg-tea-green-200 rounded-full p-4 text-tea-green-900"} />
+                    <h2 className="text-4xl font-family-serif">Litt om Sande</h2>
+                    <p>test</p>
+                </div>
             </div>
-            <footer className="w-full h-20 bg-azure-radiance-200 mt-10"></footer>
+
+            <footer className="w-full h-20 bg-azure-radiance-10 mt-10"></footer>
         </div>
 
     )
