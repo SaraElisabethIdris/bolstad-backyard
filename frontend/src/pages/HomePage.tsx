@@ -10,31 +10,37 @@ import NotatblokkPennIkon from '../img/notatblokk-penn-ikon.svg?react';
 import PokalIkon from '../img/pokal-ikon.svg?react';
 import KartIkon from '../img/kart-ikon.svg?react';
 import TogIkon from '../img/tog-ikon.svg?react';
+import SparklesIkon from '../img/sparkles-ikon.svg?react';
 import {SectionComponent} from "../components/SectionComponent.tsx";
 import {ShortInfoSection} from "../components/ShortInfoSection.tsx";
+import {useState} from "react";
+import Register from "./Register.tsx";
 
 
 export const HomePage = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <div className="flex flex-col min-h-screen bg-azure-radiance-10 items-center">
-            <div className="h-200 relative bg-center bg-cover bg-fixed flex justify-center"
+            <div className="h-200 bg-center bg-cover bg-fixed justify-center grid grid-cols-1"
                  style={{backgroundImage: `url(${backgroundImage})`, height: '40rem', width: '100%'}}>
                 <h1
-                    className="text-white text-7xl p-4 font-family-serif font-bold flex flex-col justify-center content-center">
+                    className="text-white md:text-7xl text-3xl p-4 font-family-serif font-bold justify-center content-center ml-4">
                     Bolstad <br/> Backyard
                 </h1>
-                <div className="absolute bottom-0 left p-8 text-white grid grid-cols-3 gap-8 w-full">
+                <div className="left p-8 text-white md:grid-cols-3 gap-8 w-full">
                     <ShortInfoSection icon={<KalenderIkon className="size-10"/>} title={"Når?"}
                                       bodyText={"1. juni - kl 08.00 "}/>
                     <ShortInfoSection icon={<NotatblokkPennIkon className="size-10"/>} title={"Hvor?"}
                                       bodyText={"Bolstadgata 21, Sande"}/>
                     <ShortInfoSection icon={<KaninIkon className="size-10"/>} title={"Gira?"}
-                                      bodyText={"Påmelding kommer snart..."}/>
+                                      bodyText={<a onClick={() => setIsModalOpen(true)} href="#" className="flex flex-row gap-2 group" >
+                                          Meld deg på her <span className="transform transition-transform group-hover:translate-x-1"><FirkantPilHoyreIkon/></span></a> }/>
                 </div>
             </div>
-            <div className="flex flex-col w-3/4">
-                <div className=" h-96 grid grid-cols-4 w-full">
-                    <div className="col-start-1 col-end-5">
+            <div className="grid grid-cols-1 w-3/4 gap-4">
+                <div className=" h-96 grid grid-cols-1 md:grid-cols-4 w-full gap-4">
+                    <div className="md:col-start-1 md:col-end-5">
                         <h2 className="text-5xl font-family-serif text-center p-4 pt-24">Velkommen til Bolstad
                             Backyard</h2>
                     </div>
@@ -48,8 +54,8 @@ export const HomePage = () => {
                                       icon={<PokalIkon className="size-20 stroke-1"/>}/>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2">
-                    <div className="flex flex-col">
-                        <KartIkon className="size-20 stroke-1 bg-tea-green-200 rounded-full p-4 text-tea-green-900"/>
+                    <div className="col-span-2">
+                        <KartIkon className="size-20 stroke-1 bg-tea-green-200 rounded-full p-4 text-tea-green-900" />
                         <h2 className="text-4xl font-family-serif">Løypa</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate gravida massa,
@@ -97,10 +103,25 @@ export const HomePage = () => {
                         </iframe>
                     </div>
                 </div>
+                <div className="flex flex-col pt-8">
+                    <SparklesIkon className={"size-20 stroke-1 bg-tea-green-200 rounded-full p-4 text-tea-green-900"} />
+                    <h2 className="text-4xl font-family-serif">Litt om Sande</h2>
+                    <p>test</p>
+                </div>
             </div>
-            <footer className="w-full h-20 bg-azure-radiance-200 mt-10"></footer>
-        </div>
 
-    )
-        ;
+            <footer className="w-full h-20 bg-azure-radiance-10 mt-10"></footer>
+
+            {isModalOpen && (
+                <div className="fixed inset-0 bg-gray-500/10 backdrop-blur-sm transition-opacity flex items-center justify-center"
+                     onClick={(e) => {
+                         if (e.target === e.currentTarget) {
+                             setIsModalOpen(false);
+                         }
+                     }}
+                >
+                    <Register setIsModalOpen={setIsModalOpen} />
+                </div>
+            )}
+        </div>)
 }

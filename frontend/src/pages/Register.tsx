@@ -5,8 +5,13 @@ import { ROUTE_PATHS } from '../constants';
 import { useAddParticipant } from '../api/create-participant.ts';
 import { Participant } from '../../types';
 import { Box} from "../components/Box.tsx";
+import KryssIkon from '../img/kryss-ikon.svg?react';
 
-export default function Register() {
+type Props = {
+    setIsModalOpen: (value: boolean) => void;
+}
+
+export default function Register({setIsModalOpen}: Props) {
     const [formData, setFormData] = useState<Participant>({
         id: 0,
         firstName: '',
@@ -36,26 +41,28 @@ export default function Register() {
     };
 
     return (
-            <div className="flex flex-col items-center bg-green-100">
-                <h1>Register for Bolstad Backyard Ultra</h1>
-                <Box className="p-7 m-7 rounded-2xl w-[25rem] shadow-md bg-white">
+                <Box className="p-7 m-7 rounded-2xl w-[25rem] shadow-md justify-center item bg-azure-radiance-100 relative">
+                    <button onClick={() => setIsModalOpen(false)} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 m-2">
+                        <KryssIkon />
+                    </button>
+                    <h1 className="font-bold font-family-serif text-4xl">Påmelding</h1>
                 <form onSubmit={handleSubmit} className="w-full">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col mt-2 font-family-serif ">
                         <label htmlFor="firstName">Fornavn</label>
-                        <input className="border border-gray-500 border-solid rounded-md p-2" placeholder={'Ola'} type="text" id="firstName" name="firstName" required
+                        <input className="border border-gray-500 border-solid rounded-md p-2 bg-white" placeholder={'Ola'} type="text" id="firstName" name="firstName" required
                                value={formData.firstName} onChange={handleChange}/>
                     </div>
-                    <div className="flex flex-col" >
+                    <div className="flex flex-col mt-2 font-family-serif " >
                         <label htmlFor="lastName">Etternavn</label>
-                        <input className="border border-gray-500 border-solid rounded-md p-2" placeholder={'Nordmann'} type="text" id="lastName" name="lastName" required
+                        <input className="border border-gray-500 border-solid rounded-md p-2 bg-white" placeholder={'Nordmann'} type="text" id="lastName" name="lastName" required
                                value={formData.lastName} onChange={handleChange}/>
                     </div>
-                    <div className="flex flex-col" >
+                    <div className="flex flex-col mt-2 font-family-serif" >
                         <label htmlFor="email">Email</label>
-                        <input className="border border-gray-500 border-solid  rounded-md p-2" placeholder={'ola.nordmann@mail.com'} type="email" id="email" name="email" required
+                        <input className="border border-gray-500 border-solid  rounded-md p-2 bg-white" placeholder={'ola.nordmann@mail.com'} type="email" id="email" name="email" required
                                value={formData.email} onChange={handleChange}/>
                     </div>
-                    <button type="submit" disabled={addParticipantMutation.isLoading} className="mt-7 w-full bg-green-500 text-secondary-100 rounded-md p-2 border-solid border">
+                    <button type="submit" disabled={addParticipantMutation.isLoading} className="mt-7 w-full bg-azure-radiance-400 text-white rounded-md p-2 border-solid border font-family-serif hover:bg-azure-radiance-500">
                         {addParticipantMutation.isLoading ? 'Registering...' : 'Register'}
                     </button>
                 </form>
@@ -68,6 +75,5 @@ export default function Register() {
                     <p>Registration failed. Please try again.</p>
                 )}
                 </Box>
-            </div>
     );
 }
