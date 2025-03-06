@@ -37,7 +37,7 @@ export const HomePage = () => {
                                           Meld deg på her <span className="transform transition-transform group-hover:translate-x-1"><FirkantPilHoyreIkon/></span></a>}/>
                 </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 w-3/4 gap-4">
+            <div className="grid grid-cols-1 w-3/4 gap-4">
                 <div className="md:h-96 grid grid-cols-1 md:grid-cols-4 w-full gap-4 h-auto">
                     <div className="md:col-start-1 md:col-end-5">
                         <h2 className="text-5xl font-family-serif text-center pt-24">Velkommen til Bolstad Backyard</h2>
@@ -51,7 +51,7 @@ export const HomePage = () => {
                     <SectionComponent title={"Premiering"} bodyText={"nfdsgdsg"}
                                       icon={<PokalIkon className="size-20 stroke-1"/>}/>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="md:col-span-1">
                         <KartIkon className="size-20 stroke-1 bg-tea-green-200 rounded-full p-4 text-tea-green-900"/>
                         <h2 className="text-4xl font-family-serif">Løypa</h2>
@@ -94,8 +94,8 @@ export const HomePage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="justify-items-center">
-                        <iframe className="h-150 md:w-120 w-full"
+                    <div className="justify-items-center max-w-120">
+                        <iframe className="h-150 w-full"
                                 src="https://strava-embeds.com/route/3330161502548327134?style=standard&amp;fromEmbed=false#ns=ba684180-e223-4cb0-831a-0a980dc8bacd&amp;">
                         </iframe>
                     </div>
