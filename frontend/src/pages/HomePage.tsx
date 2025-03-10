@@ -27,7 +27,7 @@ export const HomePage = () => {
                 <h1 className="text-white md:text-7xl text-3xl p-4 font-family-serif font-bold justify-center content-center ml-4">
                     Bolstad <br/> Backyard
                 </h1>
-                <div className="left p-8 text-white grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+                <div className="left p-8 text-white grid grid-cols-1 md:grid-cols-3 gap-8 w-full items-end">
                     <ShortInfoSection icon={<KalenderIkon className="size-10"/>} title={"Når?"}
                                       bodyText={"1. juni - kl 08.00 "}/>
                     <ShortInfoSection icon={<NotatblokkPennIkon className="size-10"/>} title={"Hvor?"}
