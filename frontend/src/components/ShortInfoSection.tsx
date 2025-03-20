@@ -3,7 +3,7 @@ import {ReactNode} from "react";
 type Props = {
     icon: ReactNode;
     title: string;
-    bodyText: string;
+    bodyText: string | ReactNode;
 }
 export const ShortInfoSection = ({ icon, title, bodyText }: Props) => {
     return (

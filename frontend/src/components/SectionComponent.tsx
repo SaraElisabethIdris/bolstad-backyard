@@ -8,7 +8,7 @@ type Props = {
 
 export const SectionComponent = ({ icon, bodyText, title }: Props) => {
     return (
-        <div className="col-span-1">
+        <div className="md:col-span-1">
             <div className="size-25 bg-azure-radiance-100 rounded-full text-azure-radiance-900 p-4 flex items-center justify-center font-family-serif">
                 {icon}
             </div>
