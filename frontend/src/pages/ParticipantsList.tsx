@@ -45,7 +45,7 @@ export default function ParticipantsList() {
 
 
   return (
-    <div className="bg-tea-green-200 min-h-screen flex flex-col">
+    <div className="bg-azure-radiance-10 min-h-screen flex flex-col">
       <div className="justify-start ">
         <BackButton />
       </div>
@@ -55,7 +55,7 @@ export default function ParticipantsList() {
       {participants && participants.length > 0 ? (
         <ParticipantsTable participants={participants} />
       ) : (
-        <div>No participants registered</div>
+        <div>Ingen registrerte deltagere</div>
       )}
     </div>
   );

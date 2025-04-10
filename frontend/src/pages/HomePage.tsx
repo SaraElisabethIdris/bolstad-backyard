@@ -29,6 +29,7 @@ export const HomePage = () => {
       dialogRef.current.showModal();
     }
   };
+
   return (
     <div className="flex flex-col min-h-screen bg-azure-radiance-10 items-center">
       <div
@@ -202,12 +203,12 @@ export const HomePage = () => {
           }
         }}
         onKeyUp={(e) => {
-          if (e.key === "Esc" || e.key === " ") {
+          if (e.key === "Esc") {
             dialogRef.current?.close();
           }
         }}
         onKeyDown={(e) => {
-          if (e.key === "Esc" || e.key === " ") {
+          if (e.key === "Esc") {
             dialogRef.current?.close();
           }
         }}
@@ -218,7 +219,7 @@ export const HomePage = () => {
             <button
               type={"button"}
               onClick={() => dialogRef.current?.close()}
-              className="absolute top-0 right-0 text-gray-500 hover:text-gray-700 m-2"
+              className="absolute top-7 right-7 text-gray-500 hover:text-gray-700 m-2"
             >
               <KryssIkon />
             </button>
