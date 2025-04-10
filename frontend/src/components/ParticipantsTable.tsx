@@ -15,8 +15,8 @@ export function ParticipantsTable({ participants }: ParticipantsTableProps) {
   }
 
   return (
-    <div className="rounded-md w-full flex justify-center">
-      <table className="w-1/2 table-fixed border-collapse text-sm text-black">
+    <div className="rounded-md w-full flex justify-center overflow-x-auto">
+      <table className="w-1/2 table-auto border-collapse text-sm text-black">
         <thead className="bg-white p-2 ">
           <tr>
             <th className="border-b border-gray-200 p-4 pb-3 pl-8 text-left font-medium text-gray-900 dark:border-gray-600 dark:text-gray-200">Startnummer</th>
