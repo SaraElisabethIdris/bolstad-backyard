@@ -1,0 +1,25 @@
+{
+  "participants": [
+    {
+      "id": 1,
+      "startNumber": 1,
+      "firstName": "Test",
+      "lastName": "Testesen",
+      "email": "Test@testesen.com"
+    },
+    {
+      "id": 2,
+      "startNumber": 2,
+      "firstName": "Løp",
+      "lastName": "Løperud",
+      "email": "løp@løperud.com"
+    },
+    {
+      "id": 3,
+      "startNumber": 3,
+      "firstName": "Passiv",
+      "lastName": "Tiger",
+      "email": "passiv@tiger.com"
+    }
+  ]
+}

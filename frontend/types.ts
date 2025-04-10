@@ -1,9 +1,11 @@
 export type Participant = {
   id: number;
+  startNumber: number;
   firstName: string;
   lastName: string;
   email: string;
-  phone: number;
+  club: string;
+  createdAt: Date;
 };
 
 export type User = {

@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ROUTE_PATHS } from "./constants";
-import Register from "./Register";
 import ParticipantsList from "./ParticipantsList";
 import { HomePage } from "./HomePage.tsx";
 import LoginPage from "./LoginPage.tsx";

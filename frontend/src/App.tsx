@@ -1,8 +1,7 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Router } from "./pages/router";
-import React from "react";
-
+import "./global.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,12 +13,29 @@ const queryClient = new QueryClient({
 });
 
 export function App() {
+ /* const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);*/
+
   return (
-    <div id="app">
-      <QueryClientProvider client={queryClient}>
-        <Router />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </div>
+      <div id="app">
+        <QueryClientProvider client={queryClient}>
+        {/*  {!session ? (
+              <Auth />
+          ) : (
+              <Account key={session.user.id} session={session} />
+          )}*/}
+          <Router />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </div>
   );
 }

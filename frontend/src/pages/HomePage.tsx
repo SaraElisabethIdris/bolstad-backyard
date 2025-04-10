@@ -1,4 +1,5 @@
 import backgroundImage from "./IMG_1623.jpg";
+
 import KartPinIkon from "../img/kart-pin-ikon.svg?react";
 import KalenderIkon from "../img/kalender-ikon.svg?react";
 import KaninIkon from "../img/kanin-ikon.svg?react";
@@ -10,16 +11,24 @@ import NotatblokkPennIkon from "../img/notatblokk-penn-ikon.svg?react";
 import PokalIkon from "../img/pokal-ikon.svg?react";
 import KartIkon from "../img/kart-ikon.svg?react";
 import TogIkon from "../img/tog-ikon.svg?react";
-//import SparklesIkon from '../img/sparkles-ikon.svg?react';
+import KryssIkon from "../img/kryss-ikon.svg?react";
+
 import { SectionComponent } from "../components/SectionComponent.tsx";
 import { ShortInfoSection } from "../components/ShortInfoSection.tsx";
-import { useState } from "react";
 import Register from "./Register.tsx";
-import React from "react";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { ROUTE_PATHS } from "./constants.ts";
 
 export const HomePage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const navigate = useNavigate();
 
+  const openModal = () => {
+    if (dialogRef.current) {
+      dialogRef.current.showModal();
+    }
+  };
   return (
     <div className="flex flex-col min-h-screen bg-azure-radiance-10 items-center">
       <div
@@ -38,7 +47,7 @@ export const HomePage = () => {
           <ShortInfoSection
             icon={<KalenderIkon className="size-10" />}
             title={"Når?"}
-            bodyText={"1. juni - kl 08.00 "}
+            bodyText={"7. juni - kl 09.00 "}
           />
           <ShortInfoSection
             icon={<NotatblokkPennIkon className="size-10" />}
@@ -49,16 +58,28 @@ export const HomePage = () => {
             icon={<KaninIkon className="size-10" />}
             title={"Gira?"}
             bodyText={
-              <a
-                onClick={() => setIsModalOpen(true)}
-                href="#"
-                className="flex flex-row gap-2 group"
-              >
-                Meld deg på her{" "}
-                <span className="transform transition-transform group-hover:translate-x-1">
-                  <FirkantPilHoyreIkon />
-                </span>
-              </a>
+              <>
+                <button
+                  type={"button"}
+                  onClick={openModal}
+                  className="flex flex-row gap-2 group"
+                >
+                  Meld deg på her
+                  <span className="transform transition-transform group-hover:translate-x-1">
+                    <FirkantPilHoyreIkon />
+                  </span>
+                </button>
+                <button
+                  type={"button"}
+                  onClick={() => navigate(ROUTE_PATHS.PARTICIPANTS_LIST)}
+                  className="flex flex-row gap-2 group"
+                >
+                  Deltakerliste
+                  <span className="transform transition-transform group-hover:translate-x-1">
+                    <FirkantPilHoyreIkon />
+                  </span>
+                </button>
+              </>
             }
           />
         </div>
@@ -160,9 +181,10 @@ export const HomePage = () => {
           </div>
           <div className="justify-items-center max-w-120">
             <iframe
+              title={"Kart for løypa"}
               className="h-150 w-full"
               src="https://strava-embeds.com/route/3330161502548327134?style=standard&amp;fromEmbed=false#ns=ba684180-e223-4cb0-831a-0a980dc8bacd&amp;"
-            ></iframe>
+            />
           </div>
         </div>
         {/* <div className="flex flex-col pt-8">
@@ -172,20 +194,38 @@ export const HomePage = () => {
                 </div>*/}
       </div>
 
-      <footer className="w-full h-20 bg-azure-radiance-10 mt-10"></footer>
-
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 bg-gray-500/10 backdrop-blur-sm transition-opacity flex items-center justify-center"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              setIsModalOpen(false);
-            }
-          }}
-        >
-          <Register setIsModalOpen={setIsModalOpen} />
+      <dialog
+        ref={dialogRef}
+        onClick={(e) => {
+          if (e.target === dialogRef.current) {
+            dialogRef.current?.close();
+          }
+        }}
+        onKeyUp={(e) => {
+          if (e.key === "Esc" || e.key === " ") {
+            dialogRef.current?.close();
+          }
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Esc" || e.key === " ") {
+            dialogRef.current?.close();
+          }
+        }}
+      >
+        <div className="fixed inset-0 bg-gray-500/10 backdrop-blur-sm transition-opacity flex items-center justify-center">
+          <div className="relative">
+            <Register />
+            <button
+              type={"button"}
+              onClick={() => dialogRef.current?.close()}
+              className="absolute top-0 right-0 text-gray-500 hover:text-gray-700 m-2"
+            >
+              <KryssIkon />
+            </button>
+          </div>
         </div>
-      )}
+      </dialog>
+      <footer className="w-full h-20 bg-azure-radiance-10 mt-10" />
     </div>
   );
 };

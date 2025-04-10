@@ -1,6 +1,4 @@
-import { Button } from "@mui/material";
-import React from "react";
 
 export const BackButton = () => {
-  return <Button onClick={() => window.history.back()}>Tilbake</Button>;
+  return <button type={"button"} onClick={() => window.history.back()} className="bg-azure-radiance-200 p-2 m-2 rounded-md">Tilbake</button>;
 };

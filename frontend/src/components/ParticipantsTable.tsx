@@ -1,130 +1,42 @@
-"use client";
-
-import { useState } from "react";
-import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  getSortedRowModel,
-  SortingState,
-  useReactTable,
-} from "@tanstack/react-table";
-
-import { Participant } from "../../types.ts";
-import { useAuth } from "./AuthProvider.tsx";
-import {
-  Button,
-  Table,
-  TableBody,
-  TableHead,
-  TableRow,
-  TableCell,
-} from "@mui/material";
+import type { Participant } from "../../types.ts";
 
 interface ParticipantsTableProps {
   participants: Participant[];
   onDelete?: (id: number) => void;
 }
 
-export function ParticipantsTable({
-  participants,
-  onDelete,
-}: ParticipantsTableProps) {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const { user } = useAuth();
-
-  const columns: ColumnDef<Participant>[] = [
-    {
-      accessorKey: "startnumber",
-      header: "Startnummer",
-    },
-    {
-      accessorKey: "firstName",
-      header: "First Name",
-    },
-    {
-      accessorKey: "lastName",
-      header: "Last Name",
-    },
-    ...(user?.role === "admin"
-      ? [
-          {
-            accessorKey: "email",
-            header: "Email",
-          },
-          {
-            accessorKey: "phone",
-            header: "Phone",
-          },
-          {
-            id: "actions",
-            cell: ({ row }: { row: any }) => (
-              <Button
-                variant="contained"
-                color="error"
-                onClick={() => onDelete?.(row.original.id)}
-              >
-                Delete
-              </Button>
-            ),
-          },
-        ]
-      : []),
-  ];
-
-  const table = useReactTable({
-    data: participants,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    onSortingChange: setSorting,
-    state: {
-      sorting,
-    },
-  });
+export function ParticipantsTable({ participants }: ParticipantsTableProps) {
+  if (participants.length === 0) {
+    return (
+      <div className="flex justify-center">
+        <p className="text-gray-500">Ingen deltakere registrert</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="rounded-md border">
-      <Table>
-        <TableHead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableCell key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
-                      )}
-                </TableCell>
-              ))}
-            </TableRow>
+    <div className="rounded-md w-full flex justify-center">
+      <table className="w-1/2 table-fixed border-collapse text-sm">
+        <thead className="bg-white p-2">
+          <tr>
+            <th className="border-b border-gray-200 p-4 pb-3 pl-8 text-left font-medium text-gray-400 dark:border-gray-600 dark:text-gray-200">Start Nummer</th>
+            <th className="border-b border-gray-200 p-4 p pb-3 pl-8 text-left font-medium text-gray-400 dark:border-gray-600 dark:text-gray-200">Navn</th>
+            <th className="border-b border-gray-200 p-4 pt-0 pb-3 pl-8 text-left font-medium text-gray-400 dark:border-gray-600 dark:text-gray-200">Klubb</th>
+          </tr>
+        </thead>
+        <tbody>
+          {participants.map((participant, index) => (
+            <tr
+              key={participant.id}
+              className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}
+            >
+              <td className={"border-b border-gray-100 p-4 pl-8 text-gray-500 dark:border-gray-700 dark:text-gray-400"}>{participant.startNumber}</td>
+              <td className={"border-b border-gray-100 p-4 pl-8 text-gray-500 dark:border-gray-700 dark:text-gray-400"}>{`${participant.firstName} ${participant.lastName}`}</td>
+              <td className={"border-b border-gray-100 p-4 pl-8 text-gray-500 dark:border-gray-700 dark:text-gray-400"}>{participant.club}</td>
+            </tr>
           ))}
-        </TableHead>
-        <TableBody>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                data-state={row.getIsSelected() && "selected"}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))
-          ) : (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+        </tbody>
+      </table>
     </div>
   );
 }

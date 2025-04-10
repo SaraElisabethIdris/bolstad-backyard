@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, React } from "react";
+import { useState } from "react";
 import { useAuth } from "../components/AuthProvider.tsx";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_PATHS } from "../constants.ts";

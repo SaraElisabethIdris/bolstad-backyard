@@ -1,8 +1,7 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode, React } from "react";
-import { User } from "../../types.ts";
-
+import { createContext, useContext, useState, type ReactNode } from "react";
+import type { User } from "../../types.ts";
 
 type AuthContextType = {
   user: User | null;

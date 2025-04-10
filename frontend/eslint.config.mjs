@@ -10,4 +10,8 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  { ignorePatterns: ["dist", ".eslintrc.cjs"] },
+  { parser: tseslint.parsers["@typescript-eslint/parser"] },
+  { plugins: ["react-refresh", "react", "@typescript-eslint"] },
+  { rules: { "react/react-in-jsx-scope": "off" } },
 ];

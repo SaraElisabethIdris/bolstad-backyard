@@ -1,5 +1,4 @@
-import { React, ReactNode } from "react";
-
+import type { ReactNode } from "react";
 
 type Props = {
   icon?: ReactNode;

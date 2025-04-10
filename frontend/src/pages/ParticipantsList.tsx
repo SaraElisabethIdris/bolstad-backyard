@@ -1,41 +1,57 @@
-
-import { useQuery } from "react-query";
-import { QUERY_KEYS } from "../constants";
 import { BackButton } from "../components/BackButton";
-import { Participant } from "../../types";
+import type { Participant } from "../../types";
 import { ParticipantsTable } from "../components/ParticipantsTable.tsx";
-import { useEffect, React } from "react";
 
-const fetchParticipants = async (): Promise<Participant[]> => {
-  const response = await fetch("/api/participants");
-  if (!response.ok) {
-    throw new Error("Failed to fetch participants");
-  }
-  return response.json();
-};
+import { useEffect, useState } from "react";
+import supabase from "../supabaseClient.ts";
+
+
+// Utility function to transform API response to Participant type
+function mapApiResponseToParticipant(apiResponse: any): Participant {
+  return {
+    id: apiResponse.id,
+    startNumber: Number.parseInt(apiResponse.startnumber, 10),
+    firstName: apiResponse.first_name,
+    lastName: apiResponse.last_name,
+    email: apiResponse.email,
+    club: apiResponse.club,
+    createdAt: new Date(apiResponse.created_at),
+  };
+}
 
 export default function ParticipantsList() {
-  const {
-    data: participants,
-    isLoading,
-    isError,
-    refetch,
-  } = useQuery<Participant[], Error>(
-    QUERY_KEYS.GET_PARTICIPANTS,
-    fetchParticipants,
-  );
+  const [participants, setParticipants] = useState<Participant[]>();
+ // const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
-    void refetch();
-  }, [participants]);
+    async function fetchParticipants() {
+      const { data, error } = await supabase.from("participants").select("*");
+      if (error) {
+        console.error("Error fetching participants:", error);
+        return;
+      }
+      // Transform the API response
+      const transformedParticipants = data.map(mapApiResponseToParticipant);
+      setParticipants(transformedParticipants);
+    }
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error fetching participants</div>;
+    fetchParticipants();
+  }, []);
+
+
+  //if (loading) return <div>Loading...</div>;
+  if (!participants?.length) return <div>No participants found</div>;
+
 
   return (
-    <div>
-      <BackButton />
-      <h1>Registered Participants</h1>
+    <div className="bg-tea-green-200 min-h-screen flex flex-col">
+      <div className="justify-start ">
+        <BackButton />
+      </div>
+      <h1 className="flex justify-center font-family-sans font-bold text-2xl m-2">
+        Registerte deltakere
+      </h1>
       {participants && participants.length > 0 ? (
         <ParticipantsTable participants={participants} />
       ) : (
