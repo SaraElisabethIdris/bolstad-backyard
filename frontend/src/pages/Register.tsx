@@ -30,7 +30,8 @@ export default function Register() {
       setSuccess(true); // Set success to true on successful registration
       //setTimeout(() => navigate(ROUTE_PATHS.PARTICIPANTS_LIST), 2000); // Redirect after 2 seconds
     } catch (error) {
-      setError(error);
+
+      setError(error instanceof Error ? error.message : "An error occurred");
     }
   };
 
