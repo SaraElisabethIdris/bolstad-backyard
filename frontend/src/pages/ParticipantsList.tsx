@@ -45,8 +45,8 @@ export default function ParticipantsList() {
 
 
   return (
-    <div className="bg-azure-radiance-10 min-h-screen flex flex-col">
-      <div className="justify-start ">
+    <div className="bg-azure-radiance-10 min-h-screen flex flex-col sm:p-1">
+      <div className="justify-start sm:mb-1">
         <BackButton />
       </div>
       <h1 className="flex justify-center font-family-sans font-bold text-2xl m-2">
